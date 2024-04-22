@@ -11,7 +11,8 @@ import { CreateTaskComponent } from '../create-task/create-task.component';
 export class DashboardComponent implements OnInit {
 
   constructor(public authService: AuthService) {}
-
+  public userDetails :any
   ngOnInit(): void {
+    this.userDetails = this.authService.UserData
   }
 }

@@ -16,3 +16,7 @@ export interface StatusDetails {
   low:number;
   medium:number;
 }
+export interface UserDetails {
+  email:string,
+  uid:string
+}

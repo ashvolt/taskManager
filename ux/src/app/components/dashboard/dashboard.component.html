@@ -1,4 +1,23 @@
-<div style="padding: 15px;">
-  <app-task-status></app-task-status>
-  <app-task-list></app-task-list>
+<div style="display: flex;justify-content: space-between;background: rgb(255, 190, 190);align-items: center;padding: 10px;border-radius: 10px;">
+  <div style="font-size: large;font-weight: 500;">Task Manager</div>
+  <div style="display: flex;gap: 2px;align-items: center;" *ngIf="authService.UserData as user">
+    <div [title]="user.email" class="avatar-circle">{{user.email[0]|uppercase  }}</div> 
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngIf="authService.UserData as user">
+        <mat-icon>email</mat-icon>
+        <span>{{user.email}}</span>
+      </button>
+      <button (click)="authService.Logout()" mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>
+<div style="padding: 15px;" *ngIf="authService.UserData as user">
+  <app-task-status [UserId]="user.uid"></app-task-status>
+  <app-task-list [UserId]="user.uid"></app-task-list>
 </div>

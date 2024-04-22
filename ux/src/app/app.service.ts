@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AppService {
 
-  private apiUrl = 'http://localhost:5000'; // Replace with your actual backend URL
+  //private apiUrl = 'http://localhost:5000'; // Replace with your actual backend URL
+  private apiUrl = 'https://taskmanager-st0l.onrender.com'; // Replace with your actual backend URL
 
   constructor(private http: HttpClient) { }
 
@@ -21,17 +22,20 @@ export class AppService {
   deleteLog(id:string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/logs/${id}`)
   }
-  getAllLogs(statusFilter?: string, sortBy?: string, sortOrder?: string): Observable<any[]> {
+  getAllLogs(id:string,statusFilter?: string, sortBy?: string, sortOrder?: string): Observable<any[]> {
     let queryParams = '';
 
     // Add query parameters if filters are provided
     if (statusFilter || sortBy || sortOrder) {
-      queryParams = `?${statusFilter ? `status=${statusFilter}&` : ''}${sortBy ? `sortBy=${sortBy}&` : ''}${sortOrder ? `sortOrder=${sortOrder}` : ''}`;
+      queryParams = `${statusFilter ? `status=${statusFilter}&` : ''}${sortBy ? `sortBy=${sortBy}&` : ''}${sortOrder ? `sortOrder=${sortOrder}` : ''}`;
     }
 
-    return this.http.get<any[]>(`${this.apiUrl}/logs${queryParams}`);
+    return this.http.get<any[]>(`${this.apiUrl}/logs?${queryParams}`);
   }
-  getStatus(){
+  getStatus(id:string){
     return this.http.get<any[]>(`${this.apiUrl}/status`);
+  }
+  getUserList(){
+    return this.http.get<any[]>(`${this.apiUrl}/users`);
   }
 }

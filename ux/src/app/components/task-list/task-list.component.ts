@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { TaskItem } from 'src/app/shared/types';
@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TaskListComponent implements OnInit {
 
+  @Input() UserId =''
   constructor(private appService: AppService,private sharedService: SharedService,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
   taskList :TaskItem[] = []
   ngOnInit(): void {
@@ -26,7 +27,7 @@ export class TaskListComponent implements OnInit {
   }
 
   loadLogs() {
-    this.appService.getAllLogs(undefined,'createdDateTime','desc').subscribe(
+    this.appService.getAllLogs(this.UserId,undefined,'createdDateTime','desc').subscribe(
       (data:TaskItem[]) => {
         this.taskList = data;
       },

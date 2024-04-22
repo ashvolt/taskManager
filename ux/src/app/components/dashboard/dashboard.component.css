@@ -1,0 +1,12 @@
+  .avatar-circle {
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes it circular */
+    background-color: #007bff; /* Background color */
+    color: white; /* Text color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif; /* Font style */
+    font-size: 20px; /* Adjust font size as needed */
+  }

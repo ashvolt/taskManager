@@ -115,3 +115,17 @@ app.delete('/logs/:id', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+app.get('/users', async (req, res) => {
+    try {
+      const userRecords = await admin.auth().listUsers();
+      const users = userRecords.users.map((user) => ({
+        uid: user.uid,
+        email: user.email,
+        // Add other relevant user properties if needed
+      }));
+      res.status(200).json(users);
+    } catch (error) {
+      console.error('Error listing users:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });

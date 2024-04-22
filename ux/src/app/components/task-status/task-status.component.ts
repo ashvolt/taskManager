@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { StatusDetails } from 'src/app/shared/types';
@@ -10,6 +10,7 @@ import { StatusDetails } from 'src/app/shared/types';
 })
 export class TaskStatusComponent implements OnInit {
 
+  @Input() UserId =''
   constructor(private service: AppService,private sharedService: SharedService) { }
   statusList: StatusDetails[] = [
     {
@@ -45,7 +46,7 @@ export class TaskStatusComponent implements OnInit {
   }
 
   loadStatus() {
-    this.service.getStatus().subscribe(
+    this.service.getStatus(this.UserId).subscribe(
       (resp: any) => {
         this.statusList =resp.data;
       },

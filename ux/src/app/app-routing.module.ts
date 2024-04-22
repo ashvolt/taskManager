@@ -10,15 +10,14 @@ import { SecureInnerPageGuard } from './shared/guard/secure-inner-page.guard';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  {path:'create-task',component:CreateTaskComponent},
-  { path: 'dashboard', component: DashboardComponent},
-  // { path: 'sign-in', component: SignInComponent, canActivate: [AuthGuard] },
-  // { path: 'register-user', component: SignUpComponent , canActivate: [AuthGuard]},
+  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
+  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [SecureInnerPageGuard]},
+  { path: 'sign-in', component: SignInComponent, canActivate: [AuthGuard] },
+  { path: 'register-user', component: SignUpComponent , canActivate: [AuthGuard]},
   // { path: 'dashboard', component: DashboardComponent , canActivate: [SecureInnerPageGuard]},
   // { path: 'forgot-password', component: ForgotPasswordComponent },
-  // { path: 'verify-email-address', component: VerifyEmailComponent }
+   { path: 'verify-email-address', component: VerifyEmailComponent }
 
 ];
 
