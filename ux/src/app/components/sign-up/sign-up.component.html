@@ -1,0 +1,59 @@
+<section>
+  <div class="card-body">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-3">Sign up </p>
+        <!-- Email input -->
+        <div class="formGroup">
+          <input
+            type="email"
+            class="formControl"
+            placeholder="Email Address"
+            #userEmail
+            required
+          />
+        </div>
+         <!-- Password input -->
+         <div class="formGroup">
+          <input
+            type="password"
+            class="formControl"
+            placeholder="Password"
+            #userPwd
+            required
+          />
+        </div>
+        <!--Register Button-->
+        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+          <button
+            type="submit"
+            color="primary"
+            class="btn btn-primary btn-lg btn-block"
+            (click)="authService.Register(userEmail.value, userPwd.value)">
+              Register
+          </button>
+        </div>
+        <!-- Connect with google -->
+        <div class="divider d-flex align-items-center mb-4">
+         <p class="text-center fw-bold mx-3 mb-0">Or use  </p>
+          <button class="btn btn-danger" type="button" (click)="authService.GoogleAuth()" >Google</button>
+        </div>
+        <div class="redirectToLogin">
+          <span>
+            Already have an account?
+            <span class="redirect" routerLink="/sign-in">Log In</span>
+            </span>
+        </div>
+        </div>
+      <!--Image-->
+      <div class="col-md-9 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+             class="img-fluid"
+             alt="Register Image"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+

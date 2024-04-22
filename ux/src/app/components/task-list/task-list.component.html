@@ -1,0 +1,91 @@
+<div style="display: flex;gap: 5px;padding: 10px 5px;">
+    <div>
+        <h2>Tasks</h2>
+    </div>
+    <button (click)="createTask()" mat-mini-fab color="primary">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<mat-card style="display: flex;gap: 10px;flex-direction: column;">
+    <ng-container *ngIf="taskList.length == 0;else list">
+        <div>
+            No Tasks
+        </div>
+    </ng-container>
+    <ng-template #list>
+        <div
+            style="display: flex;align-items: center;justify-content: space-between;padding: 10px 15px;background-color: rgb(201 212 250);;border-radius: 15px;">
+            <div style="flex: 1;font-weight: 700;">
+                Title
+            </div>
+            <div style="flex: 1;font-weight: 700;">
+                Status
+            </div>
+            <div style="flex: 1;font-weight: 700;">
+                Created On
+            </div>
+            <div style="flex: 1;font-weight: 700;">
+                Priority
+            </div>
+            <div style="flex: 1;font-weight: 700;">
+                Assignee
+            </div>
+            <div style="flex: 1;font-weight: 700;">
+                Mark as
+            </div>
+            <div style="flex: 1;font-weight: 700;">
+
+            </div>
+            <!-- <div>
+        <mat-icon>delete</mat-icon>
+    </div> -->
+        </div>
+        <div (click)="createTask(task)" [ngStyle]="{
+            'background-color': task.status === 'To Do' ? '#91c7ef' : 
+            task.status === 'In Progress' ? '#faa684' : 
+            task.status === 'Done' ? '#5bf8d6' : 'rgb(250, 229, 201)'
+          }"
+            style="display: flex;align-items: center;justify-content: space-between;padding: 10px 15px;border-radius: 15px;cursor: pointer;"
+            *ngFor="let task of taskList">
+            <div style="flex: 1;">
+                {{task.title}}
+            </div>
+            <div style="flex: 1;">
+                {{task.status}}
+            </div>
+            <div style="flex: 1;">
+                {{task.createdDateTime}}
+            </div>
+            <div style="flex: 1;">
+                <div class="container" [title]="task.priority">
+                    <ng-container *ngIf="task.priority == 'Low'">
+
+                        <div class="circle low"></div> <!-- For Low Value -->
+                    </ng-container>
+                    <ng-container *ngIf="task.priority == 'Medium'">
+                        <div class="circle medium"></div> <!-- For Medium Value -->
+                        <div class="circle medium"></div>
+                    </ng-container>
+                    <ng-container *ngIf="task.priority == 'High'">
+                        <div class="circle high"></div> <!-- For High Value -->
+                        <div class="circle high"></div>
+                        <div class="circle high"></div>
+                    </ng-container>
+                  </div>
+            </div>
+            <div style="flex: 1;display: flex;font-weight: 500;">
+                {{task.assignee}}
+            </div>
+            <div style="flex: 1;display: flex;">
+                <button *ngIf="task.status == 'To Do' || task.status == 'In Progress'" (click)="updateStatus(task);$event.stopPropagation()" mat-stroked-button>
+                    {{task.status == 'To Do'?'In Progress':task.status == 'In Progress'?'Done' :''}}
+                    <mat-icon>arrow_right_alt</mat-icon>
+                </button>
+            </div>
+            <div style="flex: 1;display: flex;">
+                <mat-icon (click)="deleteTask(task.id);$event.stopPropagation()">delete</mat-icon>
+            </div>
+        </div>
+    </ng-template>
+</mat-card>

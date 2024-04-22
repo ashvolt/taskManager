@@ -1,0 +1,36 @@
+<h2>Task Summary</h2>
+<div style="display: flex;justify-content: space-between;">
+
+    <div [ngStyle]="{
+        'background-color': item.status === 'To Do' ? '#91c7ef' : 
+        item.status === 'In Progress' ? '#faa684' : 
+        item.status === 'Done' ? '#5bf8d6' : 'rgb(250, 229, 201)'
+      }" style="display: flex;padding: 15px;border-radius: 20px;background-color: beige;width: 25%;justify-content: space-between;"
+        *ngFor="let item of statusList">
+        <div style="display: flex;flex-direction: column">
+            <h2>{{item.status}}</h2>
+            <h1> {{item.count}}</h1>
+        </div>
+        <div style="display: flex;gap: 15px;align-self:flex-end;">
+            <div style="display: flex;flex-direction: column">
+                <div> High</div>
+                {{item.high}}
+            </div>
+            <mat-divider [vertical]="true"></mat-divider>
+
+            <div style="display: flex;flex-direction: column">
+                <div>Low</div>
+                {{item.low}}
+            </div>
+            <mat-divider [vertical]="true"></mat-divider>
+
+            <div style="display: flex;flex-direction: column">
+                <div>
+                    Medium
+                </div>
+                {{item.medium}}
+            </div>
+        </div>
+    </div>
+
+</div>

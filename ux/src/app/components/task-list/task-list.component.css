@@ -1,0 +1,25 @@
+.container {
+
+    .circle {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .low {
+        background-color: #4CAF50;
+        /* Green */
+    }
+
+    .medium {
+        background-color: #FFC107;
+        /* Amber */
+    }
+
+    .high {
+        background-color: #F44336;
+        /* Red */
+    }
+}

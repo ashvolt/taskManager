@@ -1,0 +1,34 @@
+<h2>{{data.id?'Update':'Create'}} Task</h2>
+<form style="display: flex;flex-direction: column;" [formGroup]="myForm" (ngSubmit)="data.id?onUpdate() :onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input matInput placeholder="Enter Title" formControlName="title">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Assign To</mat-label>
+    <input matInput  placeholder="Enter Assignee" formControlName="assignee">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="To Do">To Do</mat-option>
+        <mat-option value="In Progress">In Progress</mat-option>
+        <mat-option value="Done">Done</mat-option>
+      </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority">
+        <mat-option value="Low">Low</mat-option>
+        <mat-option value="Medium">Medium</mat-option>
+        <mat-option value="High">High</mat-option>
+      </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">{{data.id?'Update':'Create'}}</button>
+</form>
+  
